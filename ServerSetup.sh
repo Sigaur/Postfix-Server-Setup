@@ -168,7 +168,7 @@ add_firewall_port(){
 
 install_ssl_Cert() {
 	git clone https://github.com/certbot/certbot.git /opt/letsencrypt > /dev/null 2>&1
-
+	apt install certbot -y
 	cd /opt/letsencrypt
 	letsencryptdomains=()
 	end="false"
