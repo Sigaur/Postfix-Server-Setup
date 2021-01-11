@@ -167,7 +167,10 @@ add_firewall_port(){
 
 
 install_ssl_Cert() {
-	apt install certbot -y
+	snap install core
+	snap refresh core
+	apt-get remove certbot
+	snap install --classic certbot
 	letsencryptdomains=()
 	end="false"
 	i=0
