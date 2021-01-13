@@ -167,6 +167,7 @@ add_firewall_port(){
 
 
 install_ssl_Cert() {
+	apt install -y snapd
 	snap install core
 	snap refresh core
 	apt-get remove certbot
