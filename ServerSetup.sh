@@ -571,8 +571,8 @@ function Remove_Headers {
 	read -p "Enter the hostname of your backend mail sender: " -r backName
 	echo "Adding \"header_checks = regexp:/etc/postfix/header_checks\" at the end of /etc/postfix/main.cf"
 	echo "header_checks = regexp:/etc/postfix/header_checks" >> /etc/postfix/main.cf
-	echo "Adding \"/^Received:.*\ from $backName/   IGNORE\" at the end of /etc/postfix/main.cf"
-	echo "/^Received:.*\ from $backName/   IGNORE" >> /etc/postfix/main.cf
+	echo "Adding \"/^Received:.*\ from $backName/   IGNORE\" at the end of /etc/postfix/header_checks"
+	echo "/^Received:.*\ from $backName/   IGNORE" >> /etc/postfix/header_checks
 }
 
 PS3="Server Setup Script - Pick an option: "
