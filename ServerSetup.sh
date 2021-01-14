@@ -573,6 +573,8 @@ function Remove_Headers {
 	echo "header_checks = regexp:/etc/postfix/header_checks" >> /etc/postfix/main.cf
 	echo "Adding \"/^Received:.*\ from $backName/   IGNORE\" at the end of /etc/postfix/header_checks"
 	echo "/^Received:.*\ from $backName/   IGNORE" >> /etc/postfix/header_checks
+	echo "Restarting Postfix"
+	service postfix restart
 }
 
 PS3="Server Setup Script - Pick an option: "
