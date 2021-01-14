@@ -567,8 +567,16 @@ function Install_IRedMail {
 	./iRedMail.sh
 }
 
+function Remove_Headers {
+	read -p "Enter the hostname of your backend mail sender: " -r backName
+	echo "Adding \"header_checks = regexp:/etc/postfix/header_checks\" at the end of /etc/postfix/main.cf"
+	echo "header_checks = regexp:/etc/postfix/header_checks" >> /etc/postfix/main.cf
+	echo "Adding \"/^Received:.*\ from $backName/   IGNORE\" at the end of /etc/postfix/main.cf"
+	echo "/^Received:.*\ from $backName/   IGNORE" >> /etc/postfix/main.cf
+}
+
 PS3="Server Setup Script - Pick an option: "
-options=("Setup SSH" "Debian Prep" "Ubuntu Prep" "Install SSL" "Install Mail Server" "Add Aliases" "Get DNS Entries" "Install GoPhish" "Install IRedMail")
+options=("Setup SSH" "Debian Prep" "Ubuntu Prep" "Install SSL" "Install Mail Server" "Add Aliases" "Get DNS Entries" "Install GoPhish" "Install IRedMail" "Remove BackEnd mail headers")
 select opt in "${options[@]}" "Quit"; do
 
     case "$REPLY" in
@@ -591,6 +599,8 @@ select opt in "${options[@]}" "Quit"; do
 		8) Install_GoPhish;;
 
 		9) Install_IRedMail;;
+
+		10) Remove_Headers;;
 
     $(( ${#options[@]}+1 )) ) echo "Goodbye!"; break;;
     *) echo "Invalid option. Try another one.";continue;;
